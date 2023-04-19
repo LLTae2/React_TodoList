@@ -1,31 +1,32 @@
 import React, { useState } from "react";
 import "../App.css";
 
-const TodoItem = ({ item, onDel }: any) => {
-  const { id, text } = item;
-  const [isCheck, setIsCheck] = useState(false);
+export interface IProps {
+  id: number;
+  title: string;
+  description: string;
+  complete: number;
+}
+
+const TodoItem = ({ id, title, description, complete }: IProps) => {
   return (
     <li className="todoItem">
       <div className="todoItem_frontbox">
         <span
-          className={
-            isCheck === true ? "todoItem_complete" : "todoItem_incomplete"
-          }
+          className={complete ? "todoItem_complete" : "todoItem_incomplete"}
         >
-          {isCheck === true ? "완료" : "미완료"}
+          {complete ? "완료" : "미완료"}
         </span>
-        <p className="todoItem_message">{text}</p>
+        <p className="todoItem_message">{description}</p>
       </div>
       <div className="todoItem_backbox">
-        <span className="todoItem_delete" onClick={() => onDel(id)}>
+        <span className="todoItem_delete" onClick={() => {}}>
           삭제하기
         </span>
         <input
           className="todoItem_checkbox"
           type="checkbox"
-          onChange={() => {
-            isCheck === false ? setIsCheck(true) : setIsCheck(false);
-          }}
+          onChange={() => {}}
         />
       </div>
     </li>
